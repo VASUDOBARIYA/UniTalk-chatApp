@@ -9,7 +9,7 @@ import send from './send.png'
 import back from './back.png'
 import share_image from './share-image.png'
 import share_image_1 from './share_image_1.jpg'
-import share_image_2 from './share_image_2.webp'
+import pic1 from './share_image_2.webp'
 import facebook from './facebook.png'
 import instagram from './instagram.png'
 import twitter from './twitter.png'
@@ -26,18 +26,20 @@ const assets = {
     share_image,
     profile_alison,
     share_image_1,
-    share_image_2,
+    pic1,
     facebook,
     instagram,
     twitter
 }
+
+export const imagesDummyData = [pic1, pic1, pic1, pic1, pic1, pic1]
 
 export const messagesDummyData = [
     {
         "_id": "680f571ff10f3cd28382f094",
         "senderId": "680f5116f10f3cd28382ed02",
         "receiverId": "680f50e4f10f3cd28382ecf9",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "hi",
         "seen": true,
         "createdAt": "2025-04-28T10:23:27.844Z",
     },
@@ -77,7 +79,7 @@ export const messagesDummyData = [
         "_id": "680f5745f10f3cd28382f0c5",
         "senderId": "680f5116f10f3cd28382ed02",
         "receiverId": "680f50e4f10f3cd28382ecf9",
-        "image": share_image_2,
+        "image": pic1,
         "seen": true,
         "createdAt": "2025-04-28T10:24:05.164Z",
     },
