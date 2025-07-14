@@ -11,7 +11,7 @@ const HomePage = () => {
             <div className={`backdrop-blur-md border-2 border-gray-600 rounded-2xl overflow-hidden h-[100%] grid relative ${isUserSelected ? 'md:grid-cols-[1fr_1.5fr_1fr] xl:grid-cols-[1fr_2fr_1fr]' : 'grid-cols-[1fr_3fr]'}`}>
                 <Sidebar selectedUser={isUserSelected} setselectedUser={setisUserSelected}/>
                 <ChatContainer selectedUser={isUserSelected} setselectedUser={setisUserSelected}/>
-                <MediaContainer selectedUser={isUserSelected} setselectedUser={setisUserSelected}/>
+                <MediaContainer selectedUser={isUserSelected} />
             </div>
         </div>
     );

@@ -32,13 +32,13 @@ const SideBar = (
                     <input type="text" className='bg-transparent border-none outline-none text-black text-sm placeholder-[#646464] flex-1' placeholder='Search User'/>
                 </div>
             </div>
-            <div>
+            <div className='flex flex-col h-[calc(100%-120px)]'>
                 {userDummyData.map((user,idx)=>(
                      <div key={idx} 
                       onClick={()=>{
                         setselectedUser(user)
                     }}
-                      className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-sm:text-sm ${selectedUser?._id === user._id && "bg-[#284142]/30"}`}>
+                      className={`relative flex items-center gap-2 p-2 pl-4 hover:bg-gray-300 rounded cursor-pointer max-sm:text-sm ${selectedUser?._id === user._id && "bg-[#284142]/30"}`}>
                         <img src={user?.profilePic || assets.avatar} alt="" className='w-[40px] aspect-[1/1] rounded-full'/>
                         <div className='flex-col leading-5 '>
                             <p>
