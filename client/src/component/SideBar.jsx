@@ -12,8 +12,12 @@ const SideBar = (
     return (
         <div className={`p-5 h-full rounded-r-xl overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}bg-[#8185b2]/10`}>
             <div className='pb-5'>
+
                 <div className='flex justify-between items-center'>
                     <img src={assets.logo} alt="logo" className='max-w-10'/>
+                    <div className='relative left-25'>
+                        <img src={assets.filter} alt="filter" className='max-w-10'/>
+                    </div>
                     <div className='relative py-2 group '>
                         <img src={assets.menu} alt="menu" className='max-h-5 cursor-pointer'/>
                         <div className='absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-gray-200 border border-gray-600 hidden group-hover:block'>
@@ -26,6 +30,7 @@ const SideBar = (
                         </div>
                     </div>
                 </div>
+                
                 <div className='bg-[#d0ccda] rounded-full flex items-center gap-2 py-2 px-4
                 mt-5 '>
                     <img src={assets.search} alt="search"  className='max-w-3 cursor-pointer'/>

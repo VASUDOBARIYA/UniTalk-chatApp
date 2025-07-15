@@ -13,6 +13,7 @@ import pic1 from './share_image_2.webp'
 import facebook from './facebook.png'
 import instagram from './instagram.png'
 import twitter from './twitter.png'
+import filter from './filter.png'
 
 const assets = {
     background,
@@ -29,7 +30,8 @@ const assets = {
     pic1,
     facebook,
     instagram,
-    twitter
+    twitter,
+    filter
 }
 
 export const imagesDummyData = [pic1, pic1, pic1, pic1, pic1, pic1]
