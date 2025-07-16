@@ -20,9 +20,9 @@ const Login = () => {
     return (
         <div className='min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-xl'>
             {/* left */}
-            <div>
+            <div className='flex flex-col items-center justify-center gap-4'>
                 <img src={assest.logo} alt="" className=' w-[min(23vw,188px)]'/>
-                <h1 className='flex items-center justify-center text-2xl mt-2'>Chat anytime,anywhere</h1>
+                <h1 className='flex items-center justify-center text-2xl mt-2'>Chat anytime,anywhere!</h1>
             </div>
 
             {/* right */}

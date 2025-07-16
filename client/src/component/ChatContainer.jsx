@@ -26,7 +26,7 @@ const ChatContainer = (
                 <img src={assets.info} className='max-md:hidden max-w-5 cursor-pointer' />
             </div>
             {/* Chat section */}
-            <div className=' flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6 '>
+            <div className=' flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6'>
                 {messagesDummyData.map((msg,idx)=>(
                     <div className={`flex items-end gap-2 justify-end ${msg.senderId !== '680f50e4f10f3cd28382ecf9' && 'flex-row-reverse '}` } key={idx}>
                         {msg.image ? (
