@@ -5,8 +5,8 @@ import assets from '../assets/assets';
 const ProfilePage = () => {
 
     const [selectedimage, setselectedimage] = useState(null);
-    const [name, setname] = useState("Vasu");
-    const [bio, setbio] = useState("At work");
+    const [name, setname] = useState("");
+    const [bio, setbio] = useState("");
     const navigate = useNavigate();
 
     const submithandler = (e)=>{
@@ -23,8 +23,8 @@ const ProfilePage = () => {
 
                     <label htmlFor="avatar" className='flex items-center gap-3 cursor-pointer'>
                         <input onChange={(e)=>setselectedimage(e.target.files[0])} type="file" id='avatar' accept='.png , .jpg , .jpeg' hidden/>
-                        <img src={selectedimage ? URL.createObjectURL(selectedimage) : assets.avatar}  alt="" className={`w-12 h-12 ${selectedimage && "rounded-full"}`}/>
-                        Upload Profile Image
+                        <img src={selectedimage ? URL.createObjectURL(selectedimage) : assets.avatar}  alt="" className={`w-25 h-25 ${selectedimage && "rounded-full"}`}/>
+                        { selectedimage ? "Change Avatar" : "Select Avatar"}    
                     </label>
 
                     <input onChange={(e)=>setname(e.target.value)}
