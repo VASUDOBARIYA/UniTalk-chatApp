@@ -1,7 +1,8 @@
-import { use } from "react";
-import { generateToken } from "../config/util";
-import { User } from "../models/user.model";
+import { generateToken } from "../config/util.js";
+import { User } from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
+import cloudinary from '../config/cloudinary.js'
+
 
 export const signup = async (req, res)=>{
     const {name,email,password,bio} = req.body;
@@ -11,6 +12,7 @@ export const signup = async (req, res)=>{
         }
 
         const user = await User.findOne({email});
+        console.log(user);
 
         if(user){
             return res.json({success : false, message : "User already exist!"});
@@ -51,6 +53,7 @@ export const login = async (req, res)=>{
         }
     
         const token = generateToken(user._id);
+        console.log(token);
     
         res.json({success : true, userdata:user, token, message : "successfully login!"});
 
@@ -62,3 +65,28 @@ export const login = async (req, res)=>{
     }
 }
 
+export const checkAuth = (req, res)=>{
+    res.json({success:true,user:req.user})
+} 
+
+export const updateProfile = async (req,res)=>{
+    try {
+        const {profilePic,name,bio} = req.body;
+
+        const userId = req.user._id;
+        let updatedUser;
+        if(!profilePic){
+            updatedUser = await User.findByIdAndUpdate(userId, {name, bio}, {new:true});
+        }
+        else{
+            const upload = await cloudinary.uploader.upload(profilePic);
+            updatedUser = await User.findByIdAndUpdate(userId, {name, bio, profilePic:upload.secure_url},{new:true});
+        }
+
+        res.json({success:true, user:updatedUser})
+    } catch (error) {
+        console.log(error.message)
+        
+        res.json({success:false,message:error.message})
+    }
+}

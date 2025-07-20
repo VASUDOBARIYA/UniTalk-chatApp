@@ -3,6 +3,7 @@ import http from 'http';
 import 'dotenv/config';
 import cors from 'cors';
 import connectDB from './config/db.js'
+import userRouter from './routes/user.router.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -12,9 +13,10 @@ app.use(cors());
 
 await connectDB();
 
-app.use("/api/status", (req, res)=>{
-    res.send("Server is live");
-})
+// Router
+app.use("/api/status", (req, res)=>{res.send("Server is live")});
+app.use("/api/user", userRouter);
+
 
 const port = process.env.PORT || 5000;
 
