@@ -3,7 +3,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import cloudinary from '../config/cloudinary.js'
 
-
+//sign up new User
 export const signup = async (req, res)=>{
     const {name,email,password,bio} = req.body;
     try {
@@ -36,6 +36,7 @@ export const signup = async (req, res)=>{
     }
 }
 
+//login User
 export const login = async (req, res)=>{
     try {
         const {email,password} = req.body;
@@ -53,8 +54,7 @@ export const login = async (req, res)=>{
         }
     
         const token = generateToken(user._id);
-        console.log(token);
-    
+
         res.json({success : true, userdata:user, token, message : "successfully login!"});
 
     } catch (error) {
@@ -65,10 +65,12 @@ export const login = async (req, res)=>{
     }
 }
 
+//Check weather the current User is Authenticate or not
 export const checkAuth = (req, res)=>{
     res.json({success:true,user:req.user})
 } 
 
+//Update User Profile 
 export const updateProfile = async (req,res)=>{
     try {
         const {profilePic,name,bio} = req.body;
