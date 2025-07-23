@@ -3,15 +3,40 @@ import http from 'http';
 import 'dotenv/config';
 import cors from 'cors';
 import connectDB from './config/db.js'
-import {
-    userRouter,
-    
-} from './routes/user.router.js';
+import userRouter from './routes/user.router.js';
 import messageRoute from './routes/message.router.js';
+import { Server } from 'socket.io';
 
 const app = express();
 const server = http.createServer(app);
 
+
+//initianize socket.io server
+export const io = new Server(server,{cors : {origin : "*"}});
+
+//store online users
+export const onlineUsers = {} // key->userId , value->socketId
+ io.on("connection",(socket)=>{
+    const userId = socket.handshake.query.userId;
+    console.log("User connected -> ",userId);
+
+    if(userId){
+        onlineUsers[userId] = socket.id;
+    }
+
+    //emit online users to all connected client
+    io.emit('getonlineusers',Object.keys(onlineUsers))
+
+    socket.on('disconnect',()=>{
+        console.log("User disconnect -> ",userId);
+        delete onlineUsers[userId];
+
+        io.emit('getonlineusers',Object.keys(onlineUsers))
+    })
+ })
+ 
+
+           
 app.use(express.json({limit:'4mb'}));
 app.use(cors());
 

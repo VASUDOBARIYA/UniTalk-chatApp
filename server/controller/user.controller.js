@@ -3,6 +3,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import cloudinary from '../config/cloudinary.js'
 
+
 //sign up new User
 export const signup = async (req, res)=>{
     const {name,email,password,bio} = req.body;
@@ -92,3 +93,4 @@ export const updateProfile = async (req,res)=>{
         res.json({success:false,message:error.message})
     }
 }
+

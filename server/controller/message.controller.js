@@ -1,6 +1,7 @@
 import { Message } from "../models/message.model.js";
 import { User } from "../models/user.model.js";
-
+import cloudinary from "../config/cloudinary.js"
+import {io,onlineUsers } from '../server.js'
 
 //get all user expect logged in User
 export const getUserForSidebar = async (req,res)=>{
@@ -61,5 +62,36 @@ export const markMessagesAsSeen = async (req,res)=>{
     } catch (error) {
         console.log(error.message)
         res.json({success:false, message:error.message})
+    }
+}
+
+//api to send a messages
+export const sendMessages = async (req,res)=>{
+    try {
+        const {text, image} = req.body;
+        const friendId = req.params.id;
+        const userId = req.user._id;
+
+        let imageurl; 
+
+        if(image){
+            const cloudinaryimg = await cloudinary.uploader.upload(image);
+            imageurl = cloudinaryimg.secure_url;
+        }
+
+        const newmsg =  await Message.create({senderId:userId, receiverId:friendId, text, image:imageurl})
+
+        //emit new message to reciver socket
+        const receiverSocketId = onlineUsers[friendId];
+
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit('newMessage',newmsg);
+        }
+
+        res.json({success:true, message:"message send!", newmsg})
+
+    } catch (error) {
+        console.log(error.message);
+        res.json({success:true, message:error.message});   
     }
 }
