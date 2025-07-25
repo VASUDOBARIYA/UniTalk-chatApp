@@ -1,7 +1,7 @@
 import { Message } from "../models/message.model.js";
 import { User } from "../models/user.model.js";
 import cloudinary from "../config/cloudinary.js"
-import {io,onlineUsers } from '../server.js'
+import { io,onlineUsers } from '../server.js'
 
 //get all user expect logged in User
 export const getUserForSidebar = async (req,res)=>{

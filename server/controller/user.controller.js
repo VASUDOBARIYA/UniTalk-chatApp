@@ -56,7 +56,7 @@ export const login = async (req, res)=>{
     
         const token = generateToken(user._id);
 
-        res.json({success : true, userdata:user, token, message : "successfully login!"});
+        res.json({success : true, userdata:user, token, message : "successfully login"});
 
     } catch (error) {
         console.log(error);
@@ -68,7 +68,7 @@ export const login = async (req, res)=>{
 
 //Check weather the current User is Authenticate or not
 export const checkAuth = (req, res)=>{
-    res.json({success:true,user:req.user})
+    res.json({success:true, user:req.user})
 } 
 
 //Update User Profile 
@@ -82,7 +82,9 @@ export const updateProfile = async (req,res)=>{
             updatedUser = await User.findByIdAndUpdate(userId, {name, bio}, {new:true});
         }
         else{
+            //console.log("welcome");
             const upload = await cloudinary.uploader.upload(profilePic);
+            //console.log(upload);
             updatedUser = await User.findByIdAndUpdate(userId, {name, bio, profilePic:upload.secure_url},{new:true});
         }
 
