@@ -1,6 +1,7 @@
-import React, { use } from 'react';
+import React, { use, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import assets, {userDummyData} from '../assets/assets';
+import { AppContext } from '../../Context/AppContext';
 
 const SideBar = (
     {
@@ -8,6 +9,7 @@ const SideBar = (
         setselectedUser
     }
     ) => {
+    const {logout} = useContext(AppContext)
     const navigate = useNavigate()
     return (
         <div className={`p-5 h-full rounded-r-xl overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}bg-[#8185b2]/10`}>
@@ -26,7 +28,7 @@ const SideBar = (
                              className='cursor-pointer text-sm'
                              >Edit profile</p>
                             <hr className='my-2 border-t-gray-500'/>
-                            <p className='cursor-pointer text-sm'>Logout</p>
+                            <p onClick={logout} className='cursor-pointer text-sm'>Logout</p>
                         </div>
                     </div>
                 </div>

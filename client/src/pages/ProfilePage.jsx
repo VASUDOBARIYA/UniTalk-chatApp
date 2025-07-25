@@ -1,24 +1,36 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import assets from '../assets/assets';
+import { AppContext } from '../../Context/AppContext';
 
 const ProfilePage = () => {
-
+    const {authUser,updateProfile} = useContext(AppContext);
     const [selectedimage, setselectedimage] = useState(null);
-    const [name, setname] = useState("");
-    const [bio, setbio] = useState("");
+    const [name, setname] = useState(authUser.name);
+    const [bio, setbio] = useState(authUser.bio);
     const navigate = useNavigate();
+    
 
-    const submithandler = (e)=>{
+    const submithandler = async (e)=>{
         e.preventDefault();
-        navigate('/')
+        if(!selectedimage){
+            await updateProfile({name, bio})
+            navigate('/')
+            return;
+        }
+        const read = new FileReader()
+        read.readAsDataURL(selectedimage)
+        read.onload = async ()=>{
+            const img = read.result
+            await updateProfile({profilePic:img, name, bio})
+            navigate('/')
+        }
     }
 
     return (
         <div className='min-h-screen bg-cover bg-no-repeat flex items-center justify-center '>
             <div className='w-5/6 max-w-2xl backdrop-blur-2xl text-gray-600 border-2 border-gray-600 flex items-center justify-between max-sm:flex-col-reverse rounded-lg '>
                 <form onSubmit={submithandler} className='flex flex-col gap-5 p-10 flex-1'>
-
                     <h3 className='text-lg'>Profile Details</h3>
 
                     <label htmlFor="avatar" className='flex items-center gap-3 cursor-pointer'>

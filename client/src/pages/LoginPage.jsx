@@ -1,20 +1,23 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import assest from '../assets/assets'
+import { AppContext } from '../../Context/AppContext';
 
 
 const Login = () => {
     const [curState, setcurState] = useState("Sign up");
-    const [fullname, setfullname] = useState("");
+    const [name, setname] = useState("");
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [bio, setbio] = useState("");
     const [isdatasubmitted, setisdatasubmitted] = useState(false);
+    const {login} = useContext(AppContext);
     const submithandler = (e)=>{
         e.preventDefault();
         if(curState === 'Sign up' && !isdatasubmitted){
             setisdatasubmitted(true)
             return;
         }
+        login(curState === "Sign up" ? 'signup' : 'login' , {name,email,password,bio});
     }
 
     return (
@@ -35,17 +38,17 @@ const Login = () => {
                     {isdatasubmitted && (<img src={assest.back} onClick={()=>setisdatasubmitted(false)} className='w-5 cursor-pointer' alt="" />)}
                </h2>
                {curState === 'Sign up' && !isdatasubmitted && (
-                <input value={fullname} onChange={(e)=>setfullname(e.target.value)} type="text" placeholder='FullName' id="" className={"p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none"} required/>
+                <input value={name} onChange={(e)=>setname(e.target.value)} type="text" placeholder='FullName' id="name" className={"p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none"} required/>
                )}
                {!isdatasubmitted && (
                 <>
-                <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder='Email' id="" className='p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none' required/> 
-                <input value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder='Password' id="" className='p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none' required/>
+                <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder='Email' id="email" className='p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none' required/> 
+                <input value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder='Password' id="password" className='p-2 border border-gray-500  rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none' required/>
                 </>
                )}
                {curState === 'Sign up' && isdatasubmitted && 
                (
-                <textarea name="" id="" rows={4} placeholder='add bio' required value={bio}
+                <textarea name="" id="bio" rows={4} placeholder='add bio' required value={bio}
                 onChange={(e)=>setbio(e.target.value)}
                 className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-none'></textarea>
                )}
