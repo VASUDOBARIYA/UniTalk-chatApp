@@ -1,11 +1,14 @@
 import React from 'react';
 import assets,{imagesDummyData} from '../assets/assets';
+import { useContext } from 'react';
+import { AppContext } from '../../Context/AppContext';
 
 const MediaContainer = (
     {
         selectedUser
-    }
+    },
 ) => {
+    const {logout} = useContext(AppContext);
     return selectedUser && (
         <div className={`bg-[#8185B2]/10 w-full relative overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}`}>
 
@@ -37,7 +40,7 @@ const MediaContainer = (
                 <a href="https://www.facebook.com/" target='_blank' rel='noopnernoreferrer'><img src={assets.facebook} alt="facebook" className='w-10 active:scale-95 hover:opacity-40'/></a>
                 <a href="https://www.twitter.com/" target='_blank' rel='noopnernoreferrer'><img src={assets.twitter} alt="twitter" className='w-10 active:scale-95 hover:opacity-40'/></a>
             </div>
-            <button className='absolute bottom-5 left-1/2 transform -translate-x-1/2  bg-cyan-800 text-white border-none text-sm font-light py-2 px-20 rounded-full cursor-pointer active:scale-95'>Logout</button>
+            <button onClick={logout} className='absolute bottom-5 left-1/2 transform -translate-x-1/2  bg-cyan-800 text-white border-none text-sm font-light py-2 px-20 rounded-full cursor-pointer active:scale-95'>Logout</button>
         </div>
     ) 
 }

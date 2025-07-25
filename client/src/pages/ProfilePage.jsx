@@ -35,8 +35,8 @@ const ProfilePage = () => {
 
                     <label htmlFor="avatar" className='flex items-center gap-3 cursor-pointer'>
                         <input onChange={(e)=>setselectedimage(e.target.files[0])} type="file" id='avatar' accept='.png , .jpg , .jpeg' hidden/>
-                        <img src={selectedimage ? URL.createObjectURL(selectedimage) : assets.avatar}  alt="" className={`w-25 h-25 ${selectedimage && "rounded-full"}`}/>
-                        { selectedimage ? "Change Avatar" : "Select Avatar"}    
+                        <img src={selectedimage ? URL.createObjectURL(selectedimage) : assets.avatar}  alt="" className={`w-25 h-25 ${ selectedimage && "rounded-full" }`}/>
+                        { selectedimage ? "Change Avatar" : "Select Avatar" }    
                     </label>
 
                     <input onChange={(e)=>setname(e.target.value)}
@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
                     <button onSubmit className='p-2 text-lg bg-cyan-800 rounded-full cursor-pointer text-white active:scale-95'>Save changes</button>
                 </form>
-                <img src={assets.logo} className='max-w-44 aspect-square mx-10 max-sm:mt-10' alt="" />
+                <img src={authUser?.profilePic || assets.logo} className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${ selectedimage && 'rounded-full' }`} alt="" />
             </div>
         </div>
     );

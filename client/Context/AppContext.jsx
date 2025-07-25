@@ -45,7 +45,6 @@ export const AppProvider = ({children})=>{
                 axios.defaults.headers.common['token'] = data.token;
                 setToken(data.token);
                 localStorage.setItem('token',data.token);
-    
                 toast.success(data.message);
             }
             else{
@@ -65,7 +64,7 @@ export const AppProvider = ({children})=>{
         setAuthUser(null)
         setOnlineUser([])
         axios.defaults.headers.common['token'] = null;
-        toast.success("Logout")
+        toast.success("Logout Successfully")
         socket.disconnect();
     }
 

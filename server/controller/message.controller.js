@@ -22,7 +22,7 @@ export const getUserForSidebar = async (req,res)=>{
 
         await Promise.all(promises)
 
-        res.json({success : true, user:fillterUser, messages});
+        res.json({success : true, users : fillterUser, messages});
     } 
     catch (error) {
         console.log(error.message)
@@ -43,7 +43,7 @@ export const getMessage = async (req,res)=>{
 
         await Message.updateMany({senderId:friendId, receiverId:userId},{seen:true});
 
-        res.json({success:true, message:Chat})
+        res.json({success:true, messages:Chat})
 
     } catch (error) {
         console.log(error.message);
@@ -92,6 +92,6 @@ export const sendMessages = async (req,res)=>{
 
     } catch (error) {
         console.log(error.message);
-        res.json({success:true, message:error.message});   
+        res.json({success:false, message:error.message});   
     }
 }
