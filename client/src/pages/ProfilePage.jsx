@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import assets from '../assets/assets';
 import { AppContext } from '../../Context/AppContext';
@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
                     <button onSubmit className='p-2 text-lg bg-cyan-800 rounded-full cursor-pointer text-white active:scale-95'>Save changes</button>
                 </form>
-                <img src={authUser?.profilePic || assets.logo} className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${ selectedimage && 'rounded-full' }`} alt="" />
+                <img src={authUser?.profilePic || assets.logo} className={`max-w-44 aspect-square mx-10 max-sm:mt-10 ${authUser?.profilePic && 'rounded-full'}`} alt="" />
             </div>
         </div>
     );

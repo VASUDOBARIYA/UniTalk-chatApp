@@ -75,9 +75,11 @@ export const sendMessages = async (req,res)=>{
         let imageurl; 
 
         if(image){
+            //console.log("welcome cloudimage");
             const cloudinaryimg = await cloudinary.uploader.upload(image);
             imageurl = cloudinaryimg.secure_url;
         }
+        //console.log("imageurl", imageurl)
 
         const newmsg =  await Message.create({senderId:userId, receiverId:friendId, text, image:imageurl})
 
