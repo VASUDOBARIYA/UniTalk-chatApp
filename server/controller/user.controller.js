@@ -13,7 +13,7 @@ export const signup = async (req, res)=>{
         }
 
         const user = await User.findOne({email});
-        console.log(user);
+        //console.log(user);
 
         if(user){
             return res.json({success : false, message : "User already exist!"});
@@ -21,7 +21,7 @@ export const signup = async (req, res)=>{
 
         const salt = await bcrypt.genSalt(10);
 
-        console.log(salt);
+        //console.log(salt);
 
         const new_password = await bcrypt.hash(password,salt);
 
@@ -32,7 +32,7 @@ export const signup = async (req, res)=>{
         res.json({success : true, userdata : newUser, token, message : "User created"});
 
     } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
         res.json({success : false , message : error.message});
     }
 }
@@ -59,7 +59,7 @@ export const login = async (req, res)=>{
         res.json({success : true, userdata:user, token, message : "successfully login"});
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
 
         res.json({success : false, message : error.message});
 
@@ -90,7 +90,7 @@ export const updateProfile = async (req,res)=>{
 
         res.json({success:true, user:updatedUser})
     } catch (error) {
-        console.log(error.message)
+        //console.log(error.message)
         
         res.json({success:false,message:error.message})
     }

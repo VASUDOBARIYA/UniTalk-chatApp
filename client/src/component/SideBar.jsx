@@ -6,20 +6,18 @@ import { MessageContext } from '../../Context/messageContext';
 
 const SideBar = () => {
 
-    const {selectedUser, getUsers, users, setSelectedUser, unseen, setUnseen} = useContext(MessageContext);    
+    const {selecteduser, getUsers, users, setSelecteduser, unseen, setUnseen} = useContext(MessageContext);    
     const {logout, onlineUser} = useContext(AppContext)
     const navigate = useNavigate()
     const [input, setinput] = useState(false)
     const filterUser = input ? (users || []).filter((user) => user.name.toLowerCase().includes(input.toLowerCase())) : (users || []);
-
-    console.log(users)
 
     useEffect(() => {
         getUsers();
     }, [onlineUser]);
 
     return (
-        <div className={`p-5 h-full rounded-r-xl overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}bg-[#8185b2]/10`}>
+        <div className={`p-5 h-full rounded-r-xl overflow-y-scroll ${selecteduser ? "max-md:hidden" : ""}bg-[#8185b2]/10`}>
             <div className='pb-5'>
                 
                 <div className='flex justify-between items-center'>
@@ -47,8 +45,8 @@ const SideBar = () => {
             <div className='flex flex-col h-[calc(100%-120px)]'>
                 {(filterUser ?? []).map((user,idx)=>(
                      <div key={idx} 
-                      onClick={()=>setSelectedUser(user)}
-                      className={`relative flex items-center gap-2 p-2 pl-4 hover:bg-gray-300 rounded cursor-pointer max-sm:text-sm ${selectedUser?._id === user._id && "bg-[#284142]/30"}`}>
+                      onClick={()=>setSelecteduser(user)}
+                      className={`relative flex items-center gap-2 p-2 pl-4 hover:bg-gray-300 rounded cursor-pointer max-sm:text-sm ${selecteduser?._id === user._id && "bg-[#284142]/30"}`}>
                         <img src={user?.profilePic || assets.avatar} alt="" className='w-[40px] aspect-[1/1] rounded-full'/>
                         <div className='flex-col leading-5 '>
                             <p>

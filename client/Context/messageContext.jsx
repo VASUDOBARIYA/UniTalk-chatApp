@@ -9,7 +9,7 @@ export const MessageProvider = ({children})=>{
     const [users, setUsers] = useState([]);
     const [selecteduser, setSelecteduser] = useState(null);
     const [unseen, setUnseen] = useState({});
-    const {socket,axios} = useContext(AppContext);
+    const {socket, axios} = useContext(AppContext);
 
     //function to get all user for left sidebar
     const getUsers = async ()=>{
@@ -43,9 +43,9 @@ export const MessageProvider = ({children})=>{
 
     const sendMessages = async (messages) =>{
          try {
-            const { data } = await axios.post(`/api/messages/send/${selecteduser._id}`,messages)
+            const { data } = await axios.post(`/api/messages/send/${selecteduser._id}`, messages)
             if(data.success){
-                setMessages((prevmsg)=>[...prevmsg,data.newmsg])
+                setMessages((prevmsg)=>[...prevmsg, data.newmsg])
             }
             else{
                 toast.error(data.message);
@@ -86,7 +86,7 @@ export const MessageProvider = ({children})=>{
     useEffect(() => {
         subscribeMsg();
         return ()=>unsubscribeMsg()
-    }, [socket,selecteduser]);
+    }, [socket, selecteduser]);
 
 
     const value = {

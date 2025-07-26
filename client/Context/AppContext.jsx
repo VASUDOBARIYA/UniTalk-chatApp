@@ -36,7 +36,7 @@ export const AppProvider = ({children})=>{
     const login = async (state,credential)=>{
         try {
             const { data } = await axios.post(`/api/user/${state}`,credential)
-            console.log(data);
+            //console.log(data);
     
             if(data.success){
                 setAuthUser(data.userdata);
@@ -48,11 +48,11 @@ export const AppProvider = ({children})=>{
                 toast.success(data.message);
             }
             else{
-                console.log("error in login")
+                //console.log("error in login")
                 toast.error(data.message);
             }
         } catch (error) {
-            console.log("error error in login");
+            //console.log("error error in login");
             toast.error(error.message);
         }
     }
@@ -73,14 +73,14 @@ export const AppProvider = ({children})=>{
     const updateProfile = async (body)=>{
         try {
             const { data } = await axios.put('/api/user/update-profile', body);
-            console.log(data)
+            //console.log(data)
 
             if(data.success){
                 setAuthUser(data.user)
                 toast.success("Profile updated successfully")
             }
             else{
-                console.log("error upload")
+                //console.log("error upload")
                 toast.error("Something went wrong")
             }
         } catch (error) {
@@ -101,8 +101,9 @@ export const AppProvider = ({children})=>{
         newSocket.connect();
         setSocket(newSocket);
 
-        newSocket.on('getOnlineUsers',(userIds)=>{
+        newSocket.on('getonlineusers',(userIds)=>{
             setOnlineUser(userIds);
+            console.log("online: ", onlineUser)
         })
     }
 
@@ -113,6 +114,7 @@ export const AppProvider = ({children})=>{
         }
         CheckAuth();
     }, [token]);
+
 
     const value = {
         axios,

@@ -25,7 +25,7 @@ export const getUserForSidebar = async (req,res)=>{
         res.json({success : true, users : fillterUser, messages});
     } 
     catch (error) {
-        console.log(error.message)
+        //console.log(error.message)
         res.json({success : false, message:error.message})
     }
 }
@@ -46,7 +46,7 @@ export const getMessage = async (req,res)=>{
         res.json({success:true, messages:Chat})
 
     } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
         res.json({success:false, message:error.message})
     }
 }
@@ -60,7 +60,7 @@ export const markMessagesAsSeen = async (req,res)=>{
     
         res.json({success:true});
     } catch (error) {
-        console.log(error.message)
+        //console.log(error.message)
         res.json({success:false, message:error.message})
     }
 }
@@ -91,7 +91,7 @@ export const sendMessages = async (req,res)=>{
         res.json({success:true, message:"message send!", newmsg})
 
     } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
         res.json({success:false, message:error.message});   
     }
 }
