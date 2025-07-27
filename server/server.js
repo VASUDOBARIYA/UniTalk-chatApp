@@ -43,7 +43,7 @@ app.use(cors());
 await connectDB();
 
 // Router
-app.use("/api/status", (req, res)=>{res.send("Server is live")});
+app.use("/", (req, res)=>{res.send("Server is live")});
 app.use("/api/user", userRouter);
 app.use("/api/messages", messageRoute);
 
