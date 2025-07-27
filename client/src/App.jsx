@@ -11,7 +11,7 @@ const App = () => {
   const {authUser} = useContext(AppContext);
   return (
     <>
-    <div className="bg-[url('/background.webp')] bg-contain">
+    <div className="bg-[url('./background.webp')] bg-contain">
     <Toaster />
     <Routes>
       <Route path='/' element={authUser ? <HomePage/> : <Navigate to="/login"/>}></Route>

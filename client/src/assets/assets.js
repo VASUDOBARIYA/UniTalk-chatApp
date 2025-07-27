@@ -1,4 +1,3 @@
-import background from './background.webp'
 import menu from './menu.png'
 import logo from './logo.png'
 import search from './search.png'
@@ -16,7 +15,6 @@ import twitter from './twitter.png'
 import filter from './filter.png'
 
 const assets = {
-    background,
     menu,
     logo,
     search,
