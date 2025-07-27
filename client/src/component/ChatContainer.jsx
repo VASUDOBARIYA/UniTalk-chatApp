@@ -69,11 +69,11 @@ const ChatContainer = () => {
             {/* Chat section */}
             <div className=' flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6'>
                 {messages.map((msg,idx)=>(
-                    <div className={`flex items-end gap-2 justify-end ${msg.senderId !== authUser._id && 'flex-row-reverse '}` } key={idx}>
+                    <div className={`flex items-end gap-1 justify-end ${msg.senderId !== authUser._id && 'flex-row-reverse '}` } key={idx}>
                         {msg.image ? (
-                            <img src={msg.image} className='max-w-[230px] border-gray-700 overflow-hidden mb-8'/>
+                            <img src={msg.image} className='max-w-[230px] border-gray-700 overflow-hidden mb-2'/>
                         ) : (
-                            <p className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-8 break-all text-black ${msg.senderId === authUser._id ? 'rounded-br-none bg-green-500/30' : 'rounded-bl-none bg-cyan-500/30'}`}>{msg.text}
+                            <p className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-2 break-all text-black ${msg.senderId === authUser._id ? 'rounded-br-none bg-green-500/30' : 'rounded-bl-none bg-cyan-500/30'}`}>{msg.text}
                             <p className='text-gray-500 text-xs'>{formateTime(msg.createdAt)}</p>
                             </p>   
                         )}
