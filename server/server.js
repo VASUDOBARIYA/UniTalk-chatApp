@@ -48,12 +48,17 @@ app.use("/api/user", userRouter);
 app.use("/api/messages", messageRoute);
 
 
-const port = process.env.PORT || 5000;
-
 server.on('error', (err) => 
     {console.error('Server error:', err);
 });
 
-server.listen(port, ()=>{
-    console.log("server is running on :" + port);
-})
+if(process.env.NODE_ENV !== "production"){
+    const port = process.env.PORT || 5000;
+
+    server.listen(port, ()=>{
+        console.log("server is running on :" + port);
+    })
+}
+
+export default server;
+
