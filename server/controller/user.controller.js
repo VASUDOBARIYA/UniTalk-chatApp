@@ -32,7 +32,7 @@ export const signup = async (req, res)=>{
         res.json({success : true, userdata : newUser, token, message : "User created"});
 
     } catch (error) {
-        //console.log(error.message);
+        console.log(error.message);
         res.json({success : false , message : error.message});
     }
 }

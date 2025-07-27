@@ -36,7 +36,7 @@ export const AppProvider = ({children})=>{
     const login = async (state,credential)=>{
         try {
             const { data } = await axios.post(`/api/user/${state}`,credential)
-            //console.log(data);
+            console.log(data);
     
             if(data.success){
                 setAuthUser(data.userdata);
@@ -48,11 +48,11 @@ export const AppProvider = ({children})=>{
                 toast.success(data.message);
             }
             else{
-                //console.log("error in login")
+                console.log(data.message);
                 toast.error(data.message);
             }
         } catch (error) {
-            //console.log("error error in login");
+            console.log("error error in login");
             toast.error(error.message);
         }
     }
