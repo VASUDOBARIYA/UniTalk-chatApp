@@ -273,7 +273,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- Vasu Dobariya - [YourGitHub](https://github.com/VASUDOBARIYA)
+- Vasu Dobariya - [GitHub](https://github.com/VASUDOBARIYA)
 
 ## 🙏 Acknowledgments
 
